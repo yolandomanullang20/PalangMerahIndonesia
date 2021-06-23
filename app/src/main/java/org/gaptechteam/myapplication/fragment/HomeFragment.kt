@@ -18,6 +18,7 @@ class HomeFragment : Fragment() {
 
     lateinit var vpSlider : ViewPager
     lateinit var rv_berita : RecyclerView
+    lateinit var rv_rs : RecyclerView
 
 
     override fun onCreateView(
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
         //call item from xml
         vpSlider = view.findViewById(R.id.vp_slider)
         rv_berita = view.findViewById(R.id.rv_news)
+        rv_rs = view.findViewById(R.id.rv_rs)
 
         //slider home
         sliderHome(vpSlider)
@@ -36,8 +38,14 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
+        val layoutManager2 = LinearLayoutManager(activity)
+        layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
+
         rv_berita.adapter = AdapterBerita(arrBerita)
         rv_berita.layoutManager = layoutManager
+
+        rv_rs.adapter = AdapterBerita(arrRumahSakit)
+        rv_rs.layoutManager = layoutManager2
 
 
 
@@ -55,6 +63,41 @@ class HomeFragment : Fragment() {
     }
 
     val arrBerita:ArrayList<Berita>get(){
+        val arr = ArrayList<Berita>()
+        val b1 =  Berita()
+        b1.nama = "Gerakan Donor Bersama"
+        b1.tanggal = "22-11-2020"
+        b1.gambarBerita = R.drawable.berita1
+
+        val b2 =  Berita()
+        b2.nama = "Bantuan Korban Banjir Lombok"
+        b2.tanggal = "25-11-2020"
+        b2.gambarBerita = R.drawable.berita2
+
+        val b3 =  Berita()
+        b3.nama = "Gerakan Cuci Tangan Bersama"
+        b3.tanggal = "29-11-2020"
+        b3.gambarBerita = R.drawable.berita3
+
+        val b4 =  Berita()
+        b4.nama = "PMI With TNI Melakanakan Kegiatan Donor Darah"
+        b4.tanggal = "02-12-2020"
+        b4.gambarBerita = R.drawable.berita4
+
+        val b5 =  Berita()
+        b5.nama = "Hut PMI Ke - 71"
+        b5.tanggal = "03-12-2020"
+        b5.gambarBerita = R.drawable.berita5
+
+        arr.add(b1)
+        arr.add(b2)
+        arr.add(b3)
+        arr.add(b4)
+        arr.add(b5)
+
+        return arr
+    }
+    val arrRumahSakit:ArrayList<Berita>get(){
         val arr = ArrayList<Berita>()
         val b1 =  Berita()
         b1.nama = "Gerakan Donor Bersama"
