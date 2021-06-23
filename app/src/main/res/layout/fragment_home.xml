@@ -50,6 +50,26 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_slider"
         android:layout_width="match_parent"
-        android:layout_height="190dp"/>
+        android:layout_height="200dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/sekunderpertama"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="News Dan Event"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
 </LinearLayout>
