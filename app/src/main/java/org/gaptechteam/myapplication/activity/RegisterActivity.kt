@@ -29,10 +29,7 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_register.setOnClickListener{
             register()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            finish()
+
         }
         btn_google.setOnClickListener{
             Toast.makeText(this@RegisterActivity,"Coming Soon",Toast.LENGTH_SHORT).show()
@@ -72,9 +69,13 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
                 val respons = response.body()!!
                 if(respons.success ==1 ){
+                    val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
                     pb.visibility = View.GONE
-
                     Toast.makeText(this@RegisterActivity,"Registrasi Berhasil " + respons.user.name,Toast.LENGTH_SHORT).show()
+
 
                 }else{
 //                    Toast.makeText(this@RegisterActivity,"Error",Toast.LENGTH_SHORT).show()

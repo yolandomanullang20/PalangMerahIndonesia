@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.gaptechteam.myapplication.activity.MasukActivity
+import org.gaptechteam.myapplication.darah.BloodActivity
 import org.gaptechteam.myapplication.fragment.AkunFragment
-import org.gaptechteam.myapplication.fragment.DarahFragment
 import org.gaptechteam.myapplication.fragment.HomeFragment
 import org.gaptechteam.myapplication.fragment.RumsakFragment
 import org.gaptechteam.myapplication.halper.SharedPref
@@ -18,7 +18,7 @@ import org.gaptechteam.myapplication.halper.SharedPref
 class MainActivity : AppCompatActivity() {
 
     val fragmentHome : Fragment = HomeFragment()
-    val fragmentDarah : Fragment = DarahFragment()
+//    val fragmentDarah : Fragment = DarahFragment()
     val fragmentAkun : Fragment = AkunFragment()
     val fragmentRs : Fragment = RumsakFragment()
     val fm : FragmentManager =supportFragmentManager
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     fun setUpBottoNav(){
         fm.beginTransaction().add(R.id.container,fragmentHome).show(fragmentHome).commit()
         fm.beginTransaction().add(R.id.container,fragmentAkun).hide(fragmentAkun).commit()
-        fm.beginTransaction().add(R.id.container,fragmentDarah).hide(fragmentDarah).commit()
+//        fm.beginTransaction().add(R.id.container,fragmentDarah).hide(fragmentDarah).commit()
         fm.beginTransaction().add(R.id.container,fragmentRs).hide(fragmentRs).commit()
 
         bottonNavigationView = findViewById(R.id.nav_view)
@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity() {
                     callFragment(0,fragmentHome)
                 }
                 R.id.navigation_darah ->{
-                    callFragment(1,fragmentDarah)
+                    startActivity(Intent(this, BloodActivity::class.java))
+
                 }
                 R.id.navigation_rs ->{
                     callFragment(2,fragmentRs)
