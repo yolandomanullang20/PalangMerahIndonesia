@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.edt_email
-import kotlinx.android.synthetic.main.activity_login.edt_password
-import kotlinx.android.synthetic.main.activity_login.pb
+import kotlinx.android.synthetic.main.activity_register.*
+import okhttp3.ResponseBody
 import org.gaptechteam.myapplication.MainActivity
 import org.gaptechteam.myapplication.R
 import org.gaptechteam.myapplication.app.ApiConfig
@@ -18,66 +16,73 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    lateinit var s:SharedPref
+    lateinit var s: SharedPref
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_register)
 
         s = SharedPref(this)
-        btn_login.setOnClickListener{
-            login()
+
+
+        btn_register.setOnClickListener{
+            register()
+        }
+        btn_google.setOnClickListener{
+            Toast.makeText(this@RegisterActivity,"Coming Soon",Toast.LENGTH_SHORT).show()
+
         }
     }
-    fun login(){
-        if (
-            edt_email.text.isEmpty()){
+
+    fun register(){
+        if(edt_nama.text.isEmpty()){
+            edt_nama.error = "Kolom Nama Tidak Boleh Kosong"
+            edt_nama.requestFocus()
+            return
+        }else if (edt_email.text.isEmpty()){
             edt_email.error = "Kolom Email Tidak Boleh Kosong"
             edt_email.requestFocus()
-            return}
-        else if (
-            edt_password.text.isEmpty()){
+            return
+        }else if (edt_phone.text.isEmpty()){
+            edt_phone.error = "Kolom No HP Tidak Boleh Kosong"
+            edt_phone.requestFocus()
+            return
+        }else if (edt_password.text.isEmpty()){
             edt_password.error = "Kolom Password Tidak Boleh Kosong"
             edt_password.requestFocus()
             return
         }
 
-
         pb.visibility = View.VISIBLE
-        ApiConfig.instanceRetrofit.login(edt_email.text.toString(),edt_password.text.toString()).enqueue(object :Callback<ResponModel>{
+        ApiConfig.instanceRetrofit.register(edt_nama.text.toString(),edt_email.text.toString(),edt_phone.text.toString(),edt_password.text.toString()).enqueue(object :Callback<ResponModel>{
 
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-                Toast.makeText(this@LoginActivity,"Sukses",Toast.LENGTH_SHORT).show()
                 pb.visibility = View.GONE
+
+                Toast.makeText(this@RegisterActivity,"Sukses",Toast.LENGTH_SHORT).show()
 
             }
 
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                pb.visibility = View.GONE
                 val respons = response.body()!!
                 if(respons.success ==1 ){
+                    pb.visibility = View.GONE
                     s.setStatusLogin(true)
-                    s.setString(s.name,respons.user.name)
-                    s.setString(s.phone,respons.user.phone)
-                    s.setString(s.email,respons.user.email)
-                    val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                    val intent = Intent(this@RegisterActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                     finish()
-                    Toast.makeText(this@LoginActivity,"Selamat Datang " + respons.user.name,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity,"Selamat Datang " + respons.user.name,Toast.LENGTH_SHORT).show()
 
                 }else{
 //                    Toast.makeText(this@RegisterActivity,"Error",Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this@LoginActivity,"Error " +respons.message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity,"Error " +respons.message,Toast.LENGTH_SHORT).show()
 
                 }
             }
 
         })
     }
-
 }
-
-
