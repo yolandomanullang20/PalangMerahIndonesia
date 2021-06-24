@@ -16,7 +16,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     class ViewHolder(private val binding: ListBloodBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(hewan: Blood) = with(binding) {
-            kodeTextView.text = "Golongan darah "  + hewan.goldaJenis
+            kodeTextView.text = hewan.goldaJenis
             namaTextView.text = hewan.goldaPositif
             hargaTextView.text = hewan.goldaNegatif
 
