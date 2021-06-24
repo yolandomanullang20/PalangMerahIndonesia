@@ -32,10 +32,11 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_person_24"/>
                 <TextView
+                    android:id="@+id/tv_welcome"
                     android:layout_marginLeft="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Halo Yolando Manullang"/>
+                    android:text="Halo Guest,Kamu Belum Login"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <ImageView

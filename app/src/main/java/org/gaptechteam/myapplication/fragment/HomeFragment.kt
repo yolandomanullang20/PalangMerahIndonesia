@@ -1,17 +1,22 @@
 package org.gaptechteam.myapplication.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Adapter
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import org.gaptechteam.myapplication.MainActivity
 import org.gaptechteam.myapplication.R
+import org.gaptechteam.myapplication.activity.MasukActivity
 import org.gaptechteam.myapplication.adapter.AdapterBerita
 import org.gaptechteam.myapplication.adapter.AdapterSlider
+import org.gaptechteam.myapplication.halper.SharedPref
 import org.gaptechteam.myapplication.model.Berita
 
 class HomeFragment : Fragment() {
@@ -19,6 +24,8 @@ class HomeFragment : Fragment() {
     lateinit var vpSlider : ViewPager
     lateinit var rv_berita : RecyclerView
     lateinit var rv_rs : RecyclerView
+    lateinit var tv_welcome : TextView
+    lateinit var s: SharedPref
 
 
     override fun onCreateView(
@@ -27,10 +34,15 @@ class HomeFragment : Fragment() {
     ): View? {
 
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
+
+        s = SharedPref(requireActivity())
+
+
         //call item from xml
         vpSlider = view.findViewById(R.id.vp_slider)
         rv_berita = view.findViewById(R.id.rv_news)
         rv_rs = view.findViewById(R.id.rv_rs)
+        tv_welcome = view.findViewById(R.id.tv_welcome)
 
         //slider home
         sliderHome(vpSlider)
@@ -48,8 +60,27 @@ class HomeFragment : Fragment() {
         rv_rs.layoutManager = layoutManager2
 
 
-
+        settingData()
         return view
+    }
+    fun settingData(){
+        if (s.getStatusLogin()==false){
+            tv_welcome.setText("Halo Guest")
+        }else{
+        if(s.getUser()==null){
+            val intent = Intent(activity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            return
+        }
+        else{
+            val user = s.getUser()!!
+
+            tv_welcome.text = "Halo " + user.name
+        }
+        }
+
+
     }
     //slider home
     fun sliderHome(vpSlider : ViewPager){

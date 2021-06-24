@@ -11,6 +11,7 @@ import android.widget.TextView
 import org.gaptechteam.myapplication.MainActivity
 import org.gaptechteam.myapplication.R
 import org.gaptechteam.myapplication.activity.LoginActivity
+import org.gaptechteam.myapplication.activity.MasukActivity
 import org.gaptechteam.myapplication.halper.SharedPref
 
 class AkunFragment : Fragment() {
@@ -28,19 +29,23 @@ class AkunFragment : Fragment() {
 
         init(view)
 
-        s = SharedPref(activity!!)
+        s = SharedPref(requireActivity())
+        setData()
 
         btn_logout.setOnClickListener{
             s.setStatusLogin(false)
+            val intent = Intent(activity, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            
         }
-        setData()
 
         return view
     }
 
     fun setData(){
         if(s.getUser()==null){
-            val intent = Intent(activity, LoginActivity::class.java)
+            val intent = Intent(activity, MasukActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             return
