@@ -7,19 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="org.gaptechteam.myapplication.activity.ui.home.HomeFragment"
+        android:name="org.gaptechteam.myapplication.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="org.gaptechteam.myapplication.activity.ui.dashboard.DashboardFragment"
+        android:name="org.gaptechteam.myapplication.fragment.DarahFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_darah" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="org.gaptechteam.myapplication.activity.ui.notifications.NotificationsFragment"
+        android:name="org.gaptechteam.myapplication.fragment.AkunFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_akun" />
+    <fragment
+        android:id="@+id/navigation_rs"
+        android:name="org.gaptechteam.myapplication.fragment.RumsakFragment"
+        android:label="RS"
+        tools:layout="@layout/fragment_rs" />
+    />
 </navigation>
