@@ -37,24 +37,27 @@ class AkunFragment : Fragment() {
             val intent = Intent(activity, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            
+
         }
 
         return view
     }
 
     fun setData(){
-        if(s.getUser()==null){
-            val intent = Intent(activity, MasukActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-            return
-        }
-        val user = s.getUser()!!
+        if (s.getStatusLogin()==true){
+            if(s.getUser()==null){
+                val intent = Intent(activity, MasukActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                return
+            }
+            val user = s.getUser()!!
 
-        tvNama.text = user.name
-        tvEmail.text = user.email
-        tvPhone.text = user.phone
+            tvNama.text = user.name
+            tvEmail.text = user.email
+            tvPhone.text = user.phone
+        }
+
 
 
     }
