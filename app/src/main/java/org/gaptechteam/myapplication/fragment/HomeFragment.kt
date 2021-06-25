@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,8 @@ class HomeFragment : Fragment() {
     lateinit var tv_welcome : TextView
     lateinit var rl_forum : RelativeLayout
     lateinit var rl_news : RelativeLayout
+    lateinit var rl_reward : RelativeLayout
+    lateinit var rl_education : RelativeLayout
     lateinit var s: SharedPref
 
 
@@ -49,13 +52,23 @@ class HomeFragment : Fragment() {
         tv_welcome = view.findViewById(R.id.tv_welcome)
         rl_forum = view.findViewById(R.id.rl_forum)
         rl_news = view.findViewById(R.id.rl_news)
+        rl_reward = view.findViewById(R.id.rl_reward)
+        rl_education = view.findViewById(R.id.rl_edukasi)
+
 
         //slider home
         sliderHome(vpSlider)
 
 
+        rl_education.setOnClickListener{
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse("https://pmi.or.id/")
+            startActivity(i)
 
-
+        }
+        rl_reward.setOnClickListener{
+            Toast.makeText(activity,"Coming Soon",Toast.LENGTH_SHORT).show();
+        }
         rl_forum.setOnClickListener{
             startActivity(Intent(activity, ForumActivity::class.java))
 
@@ -112,7 +125,7 @@ class HomeFragment : Fragment() {
     //slider home
     fun sliderHome(vpSlider: ViewPager){
         val arraySlider = ArrayList<Int>()
-        arraySlider.add(R.drawable.pmibandung)
+        arraySlider.add(R.drawable.pmibandung   )
         arraySlider.add(R.drawable.berita5)
         arraySlider.add(R.drawable.rs5)
 
