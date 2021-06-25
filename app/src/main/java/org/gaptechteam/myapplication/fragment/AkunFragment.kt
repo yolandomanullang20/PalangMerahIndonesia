@@ -43,6 +43,7 @@ class AkunFragment : Fragment() {
         return view
     }
 
+
     fun setData(){
         if (s.getStatusLogin()==true){
             if(s.getUser()==null){
