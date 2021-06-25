@@ -169,6 +169,7 @@
                     app:cardElevation="3dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_news"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="3dp">
@@ -206,6 +207,7 @@
                     app:cardElevation="3dp">
 
                     <RelativeLayout
+                        android:id="@+id/rl_forum"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="3dp">

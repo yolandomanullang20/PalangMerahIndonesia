@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction().add(R.id.container,fragmentHome).show(fragmentHome).commit()
         fm.beginTransaction().add(R.id.container,fragmentAkun).hide(fragmentAkun).commit()
 //        fm.beginTransaction().add(R.id.container,fragmentDarah).hide(fragmentDarah).commit()
-        fm.beginTransaction().add(R.id.container,fragmentRs).hide(fragmentRs).commit()
+//        fm.beginTransaction().add(R.id.container,fragmentRs).hide(fragmentRs).commit()
 
         bottonNavigationView = findViewById(R.id.nav_view)
         menu = bottonNavigationView.menu
@@ -60,12 +60,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, BloodActivity::class.java))
 
                 }
-                R.id.navigation_rs ->{
-                    callFragment(2,fragmentRs)
-                }
+//                R.id.navigation_rs ->{
+//                    callFragment(2,fragmentRs)
+//                }
                 R.id.navigation_akun ->{
                     if(s.getStatusLogin()) {
-                        callFragment(3, fragmentAkun)
+                        callFragment(2, fragmentAkun)
                     }else{
                         startActivity(Intent(this, MasukActivity::class.java))
                     }

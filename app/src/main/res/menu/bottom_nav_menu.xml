@@ -10,10 +10,6 @@
         android:id="@+id/navigation_darah"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Status Darah" />
-    <item
-        android:id="@+id/navigation_rs"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="Rumah Sakit" />
 
     <item
         android:id="@+id/navigation_akun"
