@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -57,7 +58,12 @@ class MainActivity : AppCompatActivity() {
                     callFragment(0,fragmentHome)
                 }
                 R.id.navigation_darah ->{
-                    startActivity(Intent(this, BloodActivity::class.java))
+                    if(s.getStatusLogin()==false){
+                        Toast.makeText(this,"Please Login", Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        startActivity(Intent(this, BloodActivity::class.java))
+                    }
 
                 }
 //                R.id.navigation_rs ->{

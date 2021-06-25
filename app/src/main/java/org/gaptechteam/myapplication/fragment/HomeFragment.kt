@@ -70,6 +70,7 @@ class HomeFragment : Fragment() {
             Toast.makeText(activity,"Coming Soon",Toast.LENGTH_SHORT).show();
         }
         rl_forum.setOnClickListener{
+
             startActivity(Intent(activity, ForumActivity::class.java))
 
         }
